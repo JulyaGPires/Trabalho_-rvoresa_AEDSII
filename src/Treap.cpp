@@ -7,6 +7,22 @@ Treap::Treap(){
   raiz = nullptr; 
 
 }
+void Treap::Liberar(No_h *atual) {
+
+  if (atual == nullptr) {
+    return;
+  }
+  
+  Liberar(atual -> esquerda);
+  Liberar(atual -> direita);
+
+  delete atual;
+}
+
+Treap::~Treap() {
+
+  Liberar(raiz);
+}
 
 No_h* Treap::Inserir_BST(No_h *atual,int chave,int prioridade){
 
@@ -52,8 +68,9 @@ No_h* Treap::Inserir_BST(No_h *atual,int chave,int prioridade){
   return atual;
 }
 
-void Treap::Inserir_T(int chave, int prioridade){
+void Treap::Inserir_T(int chave){
 
+  int prioridade = rand();
   raiz = Inserir_BST(raiz, chave, prioridade);
 
 }
@@ -145,3 +162,4 @@ No_h* Treap::Remover_T(No_h* atual, int chave){
 void Treap::Remover_Principal(int chave){
   raiz = Remover_T(raiz,chave);
 }
+

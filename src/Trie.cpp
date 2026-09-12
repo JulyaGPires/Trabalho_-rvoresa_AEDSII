@@ -27,9 +27,18 @@ Trie::~Trie() {
 
 void Trie::Inserir(string &palavra) {
 
+  for(char c : palavra){
+
+    int pos = c - 'a';
+
+    if(pos < 0 || pos >= 26){
+      return;
+    }
+  }
+
   No_t *atual = raiz;
 
-  for (int i = 0; i < palavra.size(); i++) {
+  for (size_t i = 0; i < palavra.size(); i++) {
 
       char caractere = palavra[i];
       int posicao = caractere - 'a';
@@ -51,12 +60,18 @@ void Trie::Inserir(string &palavra) {
 bool Trie::Remover_palavra(No_t *atual, string &palavra, int posicao) {
 
   if (posicao == palavra.size()) {
-
+    if(!atual -> isEnd){
+      return false;
+    }
       atual->isEnd = false;
 
   } else {
 
       int posicao_letra = palavra[posicao] - 'a';
+
+      if(posicao_letra < 0 || posicao_letra >= 26){
+        return false;
+      }
 
       if (atual->trie[posicao_letra] == nullptr) {
 
@@ -72,6 +87,9 @@ bool Trie::Remover_palavra(No_t *atual, string &palavra, int posicao) {
         atual->trie[posicao_letra] = nullptr;
   }
 }
+  if(atual == raiz){
+    return false;
+  }
 
   for (int i = 0; i < 26; i++) {
 
@@ -86,18 +104,29 @@ bool Trie::Remover_palavra(No_t *atual, string &palavra, int posicao) {
 
 bool Trie::Remover(string &palavra) {
 
-  return Remover_palavra(raiz, palavra, 0);
+  if(!Buscar_Palavra(palavra)){
+    return false;
+  }
+
+  Remover_palavra(raiz, palavra, 0);
+
+  return true;
 }
 
 bool Trie::Buscar_Palavra(string &palavra) {
 
   No_t *atual = raiz;
 
-  for (int i = 0; i < palavra.size(); i++) {
+  for (size_t i = 0; i < palavra.size(); i++) {
 
       char caractere = palavra[i];
       int posicao = caractere - 'a';
 
+      if(posicao < 0 || posicao >= 26){
+
+      return false;
+
+      }
       if (atual->trie[posicao] != nullptr) {
 
         atual = atual->trie[posicao];
@@ -108,14 +137,7 @@ bool Trie::Buscar_Palavra(string &palavra) {
       }
   }
 
-  if (atual->isEnd == true) {
-
-      return true;
-
-    } else {
-
-      return false;
-  }
+  return atual -> isEnd;
 }
 
 void Trie::Achar_Pref( No_t *atual,string &resto,vector<string> &palavra_prefixo) {
@@ -138,27 +160,31 @@ void Trie::Achar_Pref( No_t *atual,string &resto,vector<string> &palavra_prefixo
     }
 }
 
-void Trie::Buscar_Prefixo(string &prefixo) {
+vector<string> Trie::Buscar_Prefixo(string &prefixo) {
 
   No_t *atual = raiz;
 
-  for (int i = 0; i < prefixo.size(); i++) {
+  for (size_t i = 0; i < prefixo.size(); i++) {
 
       char caractere = prefixo[i];
       int posicao = caractere - 'a';
 
-        if (atual->trie[posicao] != nullptr) {
+      if(posicao < 0  || posicao >= 26){
 
-            atual = atual->trie[posicao];
+          return {};
+      }
 
-        } else {
+      if (atual->trie[posicao] == nullptr) {
 
-            return;
-        }
-    }
-    
+          return {};
+      }
+
+    atual = atual->trie[posicao];
+  }
     string resto = prefixo;
     vector<string> palavra_prefixo;
 
     Achar_Pref(atual, resto, palavra_prefixo);
+
+    return palavra_prefixo;
 }

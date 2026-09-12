@@ -39,7 +39,7 @@ public:
   bool Remover(string &palavra);
   bool Buscar_Palavra(string &palavra);
   void Achar_Pref(No_t *atual,string &resto,vector<string> &palavra_prefixo);
-  void Buscar_Prefixo(string &prefixo);
+  vector<string> Buscar_Prefixo(string &prefixo);
 };
 
 #endif
