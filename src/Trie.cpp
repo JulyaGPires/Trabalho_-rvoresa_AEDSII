@@ -3,34 +3,31 @@
 
 using namespace std;
 
-Trie::Trie() {
+Trie::Trie(){
   raiz = new No_t();
 }
 
-void Trie::Liberar(No_t *atual) {
+void Trie::Liberar(No_t *atual){
 
   if (atual == nullptr) {
     return;
   }
-
   for (int i = 0; i < 26; i++) {
     Liberar(atual->trie[i]);
   }
-
   delete atual;
 }
 
-Trie::~Trie() {
+Trie::~Trie(){
 
   Liberar(raiz);
 }
 
-void Trie::Inserir(string &palavra) {
+void Trie::Inserir(string &palavra){
 
   for(char c : palavra){
 
     int pos = c - 'a';
-
     if(pos < 0 || pos >= 26){
       return;
     }
@@ -46,18 +43,16 @@ void Trie::Inserir(string &palavra) {
       if (atual->trie[posicao] != nullptr) {
 
           atual = atual->trie[posicao];
-
       } else {
 
           atual->trie[posicao] = new No_t;
           atual = atual->trie[posicao];
       }
   }
-
   atual->isEnd = true;
 }
 
-bool Trie::Remover_palavra(No_t *atual, string &palavra, int posicao) {
+bool Trie::Remover_palavra(No_t *atual, string &palavra, size_t posicao){
 
   if (posicao == palavra.size()) {
     if(!atual -> isEnd){
@@ -72,12 +67,10 @@ bool Trie::Remover_palavra(No_t *atual, string &palavra, int posicao) {
       if(posicao_letra < 0 || posicao_letra >= 26){
         return false;
       }
-
       if (atual->trie[posicao_letra] == nullptr) {
 
         return false;
     }
-  
 
       bool apagar = Remover_palavra(atual->trie[posicao_letra], palavra,posicao + 1);
 
@@ -98,22 +91,20 @@ bool Trie::Remover_palavra(No_t *atual, string &palavra, int posicao) {
           return false;
       }
   }
-
   return !atual->isEnd;
 }
 
-bool Trie::Remover(string &palavra) {
+bool Trie::Remover(string &palavra){
 
   if(!Buscar_Palavra(palavra)){
     return false;
   }
 
   Remover_palavra(raiz, palavra, 0);
-
   return true;
 }
 
-bool Trie::Buscar_Palavra(string &palavra) {
+bool Trie::Buscar_Palavra(string &palavra){
 
   No_t *atual = raiz;
 
@@ -125,12 +116,10 @@ bool Trie::Buscar_Palavra(string &palavra) {
       if(posicao < 0 || posicao >= 26){
 
       return false;
-
       }
       if (atual->trie[posicao] != nullptr) {
 
         atual = atual->trie[posicao];
-
       } else {
 
         return false;
@@ -140,7 +129,7 @@ bool Trie::Buscar_Palavra(string &palavra) {
   return atual -> isEnd;
 }
 
-void Trie::Achar_Pref( No_t *atual,string &resto,vector<string> &palavra_prefixo) {
+void Trie::Achar_Pref( No_t *atual,string &resto,vector<string> &palavra_prefixo){
 
   if (atual->isEnd == true) {
 
@@ -160,7 +149,7 @@ void Trie::Achar_Pref( No_t *atual,string &resto,vector<string> &palavra_prefixo
     }
 }
 
-vector<string> Trie::Buscar_Prefixo(string &prefixo) {
+vector<string> Trie::Buscar_Prefixo(string &prefixo){
 
   No_t *atual = raiz;
 
@@ -185,6 +174,5 @@ vector<string> Trie::Buscar_Prefixo(string &prefixo) {
     vector<string> palavra_prefixo;
 
     Achar_Pref(atual, resto, palavra_prefixo);
-
     return palavra_prefixo;
 }
