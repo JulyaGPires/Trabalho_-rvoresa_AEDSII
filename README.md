@@ -6,7 +6,7 @@ As estruturas possuem diferentes características e aplicações. **Trie e Patri
 
 O projeto também realiza uma análise experimental das estruturas, considerando diferentes tamanhos e distribuições de entrada. Os resultados das execuções são registrados em `output/resultados.csv` e utilizados para a geração dos gráficos disponíveis em `output/graficos/`.
 
-**Algoritmos e Estruturas de Dados II.**
+---
 
 ## 📚 Estruturas Implementadas
 
@@ -15,6 +15,8 @@ O projeto também realiza uma análise experimental das estruturas, considerando
 - **Splay** — árvore binária de busca autoajustável.
 - **Treap** — árvore que combina propriedades de BST e heap.
 - **KD-Tree** — estrutura para organização e busca de pontos multidimensionais.
+
+---
 
 ## 📁 Estrutura do Projeto
 
@@ -62,39 +64,52 @@ Trabalho_-rvoresa_AEDSII/
         └── 07_kdtree_operacoes.png
 ```
 
-# 🗃️ Conjunto de Dados
+---
+
+## 🗃️ Conjunto de Dados
 
 Os experimentos práticos avaliaram tamanhos de entrada:
 
-$$n \in \{100, 1.000, 10.000, 50.000, 100.000\}$$
+```
+n ∈ {100, 1.000, 10.000, 50.000, 100.000}
+```
 
 sob três distribuições de chaves:
 
-* **Strings (Trie e Patricia):** aleatório, ordenado e decrescente.
-* **Inteiros (Splay e Treap):** aleatório, ordenado e decrescente.
-* **Pontos tridimensionais (KD-Tree):** distribuição uniforme em espaço 3D, com $k = 3$.
+- **Strings** (Trie e Patricia): aleatório, ordenado e decrescente.
+- **Inteiros** (Splay e Treap): aleatório, ordenado e decrescente.
+- **Pontos tridimensionais** (KD-Tree): distribuição uniforme em espaço 3D, com k = 3.
 
-Os dados utilizados nos experimentos estão disponíveis na pasta `data/`. O script `gerar_dados.py` permite reproduzir a geração dos conjuntos de dados utilizando uma seed fixa igual a `42`.
+Os dados utilizados nos experimentos estão disponíveis na pasta `data/`. O script `gerar_dados.py` permite reproduzir a geração dos conjuntos de dados utilizando uma seed fixa igual a `42`. Essa seed garante que os arquivos de entrada sejam sempre os mesmos entre execuções; já as prioridades aleatórias internas da Treap, geradas por `rand()` sem semente fixa, podem produzir pequenas variações nos tempos medidos entre diferentes execuções.
 
 ---
 
-# ⚙️ Compilação e Execução
+## ⚙️ Compilação e Execução
 
 ### ✅ Pré-requisitos
 
-* Compilador C++ com suporte ao padrão C++11 (`g++ 13+` ou `clang++`)
-* Utilitário `make`
-* Ambiente Linux ou WSL
-
----
+- Compilador C++ com suporte ao padrão C++11 (`g++ 13+` ou `clang++`)
+- Utilitário `make`
+- Ambiente Linux ou WSL
+- Python 3.x com as bibliotecas:
+  - `pandas`
+  - `matplotlib`
 
 ### 🛠️ Comandos
 
-Clone o repositório:
+Clone o repositório e acesse a pasta do projeto:
 
 ```bash
 git clone https://github.com/JulyaGPires/Trabalho_-rvoresa_AEDSII.git
 cd Trabalho_-rvoresa_AEDSII
+```
+
+Instale as dependências do Python (caso ainda não tenha):
+
+```bash
+python3 -m pip install pandas matplotlib
+# ou no Ubuntu/WSL:
+# sudo apt install python3-pandas python3-matplotlib
 ```
 
 Compile o projeto:
@@ -109,10 +124,18 @@ Execute os experimentos:
 make run
 ```
 
-Os resultados são salvos em:
+> Os resultados dos experimentos são salvos em `output/resultados.csv`.
 
+Gere os gráficos a partir dos resultados obtidos:
+
+```bash
+python3 gerar_graficos.py
 ```
-output/resultados.csv
+
+(Opcional) Regenere os conjuntos de dados:
+
+```bash
+python3 gerar_dados.py
 ```
 
 Para remover os arquivos gerados pela compilação:
@@ -120,19 +143,24 @@ Para remover os arquivos gerados pela compilação:
 ```bash
 make clean
 ```
+
+---
+
 ## 📊 Resultados Experimentais (n = 100.000)
 
-Tempos de execução obtidos com entrada aleatória, em milissegundos:
+Tempos de execução obtidos com entrada aleatória, em milissegundos (ms):
 
 | Estrutura | Inserção (ms) | Busca (ms) | Remoção (ms) | NNS (ms) | Range Search (ms) |
 |-----------|---------------:|-----------:|-------------:|---------:|-------------------:|
-| Trie      |537,11          |47,02       |285,31        | —        | —                   |
-| Patricia  |56,04           |34,50       |142,60        | —        | —                   |
-| Splay     |103,73          |82,51       |112,08        | —        | —                   |
-| Treap     |55,02           |62,77       |75,91         | —        | —                   |
-| KD-Tree   |187,15          |221,24      |271,85        | 261,25   | 58,52               |
+| Trie      | 537,11         | 47,02      | 285,31       | —        | —                   |
+| Patricia  | 56,04          | 34,50      | 142,60       | —        | —                   |
+| Splay     | 103,73         | 82,51      | 112,08       | —        | —                   |
+| Treap     | 55,02          | 62,77      | 75,91        | —        | —                   |
+| KD-Tree   | 187,15         | 221,24     | 271,85       | 261,25   | 58,52               |
 
-Os tempos podem variar conforme o ambiente de execução.
+> Os tempos podem variar conforme o ambiente de execução.
+
+---
 
 ## 📈 Análise Experimental
 
@@ -140,8 +168,9 @@ Os experimentos foram realizados considerando diferentes tamanhos de entrada e d
 
 Para as estruturas de strings, foram comparadas principalmente Trie e Patricia. Para as estruturas baseadas em chaves inteiras, foram analisadas Splay e Treap. A KD-Tree foi avaliada separadamente devido à sua finalidade de organização e consulta de dados multidimensionais.
 
-Os resultados completos dos experimentos são armazenados em `output/resultados.csv`.
-Os gráficos gerados a partir dos experimentos estão disponíveis na pasta `output/graficos/`.
+Os resultados completos dos experimentos são armazenados em `output/resultados.csv`. Os gráficos gerados a partir dos experimentos estão disponíveis na pasta `output/graficos/`.
+
+---
 
 ## 🖼️ Correspondência entre Figuras do Artigo e Gráficos Gerados
 
@@ -155,7 +184,9 @@ Os gráficos gerados a partir dos experimentos estão disponíveis na pasta `out
 | Figura 7(c) | Splay × Treap — inserção (decrescente) | `06_splay_treap_insercao_decrescente.png` |
 | Figura 8 | KD-Tree — tempo das operações | `07_kdtree_operacoes.png` |
 
-Os gráficos são gerados automaticamente pelo `gerar_graficos.py` a partir de `output/resultados.csv`.
+Os gráficos são gerados automaticamente pelo script `gerar_graficos.py` a partir do arquivo `output/resultados.csv`.
+
+---
 
 ## 🛠️ Ambiente de Desenvolvimento
 
@@ -170,14 +201,17 @@ O projeto foi desenvolvido e testado no seguinte ambiente:
 | **Padrão C++** | C++11 |
 | **Build system** | Makefile |
 
+---
+
 ## 📚 Referências
 
 - MORRISON, D. R. **PATRICIA — Practical Algorithm To Retrieve Information Coded in Alphanumeric**. *Journal of the ACM*, v. 15, n. 4, p. 514–534, 1968.
 - SLEATOR, D. D.; TARJAN, R. E. **Self-Adjusting Binary Search Trees**. *Journal of the ACM*, v. 32, n. 3, p. 652–686, 1985.
 - BENTLEY, J. L. **Multidimensional binary search trees used for associative searching**. *Communications of the ACM*, v. 18, n. 9, p. 509–517, 1975.
 
+---
+
 ## 👩🏽‍💻 Autora
 
 **Julya Gonçalves Pires**
 - Email: julyapires500@gmail.com
-
