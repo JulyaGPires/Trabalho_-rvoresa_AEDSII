@@ -1,8 +1,12 @@
 # 🌳 Trabalho de Árvores Especializadas — AEDS II
 
-Implementação e análise experimental de estruturas de dados em árvore desenvolvida para a disciplina de **Algoritmos e Estruturas de Dados II (AEDS II)** do **CEFET-MG — Campus Divinópolis**.
+Este projeto implementa cinco estruturas de dados em árvore — **Trie, Patricia, Splay, Treap e KD-Tree** — desenvolvido como atividade da disciplina de **Algoritmos e Estruturas de Dados II do CEFET-MG, campus Divinópolis**.
 
-O projeto implementa e compara diferentes estruturas especializadas, considerando operações de inserção, busca e remoção, além de consultas espaciais na KD-Tree.
+As estruturas possuem diferentes características e aplicações. **Trie e Patricia** são utilizadas para armazenamento e busca de strings, enquanto **Splay e Treap** são árvores binárias de busca utilizadas com chaves inteiras. A **KD-Tree** é empregada para organização e consulta de pontos multidimensionais.
+
+O projeto também realiza uma análise experimental das estruturas, considerando diferentes tamanhos e distribuições de entrada. Os resultados das execuções são registrados em `output/resultados.csv` e utilizados para a geração dos gráficos disponíveis em `output/graficos/`.
+
+**Algoritmos e Estruturas de Dados II.**
 
 ## 📚 Estruturas Implementadas
 
@@ -99,7 +103,7 @@ Compile o projeto:
 make
 ```
 
-Execute a suíte de testes:
+Execute os experimentos:
 
 ```bash
 make run
@@ -138,6 +142,20 @@ Para as estruturas de strings, foram comparadas principalmente Trie e Patricia. 
 
 Os resultados completos dos experimentos são armazenados em `output/resultados.csv`.
 Os gráficos gerados a partir dos experimentos estão disponíveis na pasta `output/graficos/`.
+
+## 🖼️ Correspondência entre Figuras do Artigo e Gráficos Gerados
+
+| Figura do artigo | Conteúdo | Arquivo(s) em `output/graficos/` |
+|---|---|---|
+| Figura 6(a) | Trie × Patricia — busca (aleatório) | `01_trie_patricia_busca_aleatorio.png` |
+| Figura 6(b) | Trie × Patricia — busca (ordenado) | `02_trie_patricia_busca_ordenado.png` |
+| Figura 6(c) | Trie × Patricia — busca (decrescente) | `03_trie_patricia_busca_decrescente.png` |
+| Figura 7(a) | Splay × Treap — inserção (aleatório) | `04_splay_treap_insercao_aleatorio.png` |
+| Figura 7(b) | Splay × Treap — inserção (ordenado) | `05_splay_treap_insercao_ordenado.png` |
+| Figura 7(c) | Splay × Treap — inserção (decrescente) | `06_splay_treap_insercao_decrescente.png` |
+| Figura 8 | KD-Tree — tempo das operações | `07_kdtree_operacoes.png` |
+
+Os gráficos são gerados automaticamente pelo `gerar_graficos.py` a partir de `output/resultados.csv`.
 
 ## 🛠️ Ambiente de Desenvolvimento
 
