@@ -1,123 +1,165 @@
-# 🌳 Trabalho de Árvores Especializadas — AEDS II 
- 
-Implementação e análise experimental de estruturas de dados em árvore desenvolvida para a disciplina de **Algoritmos e Estruturas de Dados II (AEDS II)** do **CEFET-MG — Campus Divinópolis**. 
- 
-O projeto implementa e compara diferentes estruturas especializadas, considerando operações de inserção, busca e remoção, além de consultas espaciais na KD-Tree. 
- 
-## 📚 Estruturas Implementadas 
- 
-- **Trie** — armazenamento e busca de strings por prefixo. 
-- **Patricia** — árvore compactada para armazenamento de strings. 
-- **Splay** — árvore binária de busca autoajustável. 
-- **Treap** — árvore que combina propriedades de BST e heap. 
-- **KD-Tree** — estrutura para organização e busca de pontos multidimensionais. 
- 
-## 📁 Estrutura do Projeto 
- 
-```text 
-Trabalho_-rvoesa_AEDSII/ 
-├── .gitignore 
-├── Makefile 
-├── gerar_dados.py 
-├── gerar_graficos.py 
-├── data/ 
-│   ├── ints_aleatorio.csv 
-│   ├── ints_decrescente.csv 
-│   ├── ints_ordenado.csv 
-│   ├── pontos_uniforme.csv 
-│   ├── strings_aleatorio.csv 
-│   ├── strings_decrescente.csv 
-│   └── strings_ordenado.csv 
-├── include/ 
-│   ├── KD_Tree.hpp 
-│   ├── Patricia.hpp 
-│   ├── Splay.hpp 
-│   ├── Treap.hpp 
-│   └── Trie.hpp 
-├── src/ 
-│   ├── KD_Tree.cpp 
-│   ├── Main.cpp 
-│   ├── Patricia.cpp 
-│   ├── Splay.cpp 
-│   ├── Treap.cpp 
-│   └── Trie.cpp 
-└── output/ 
-    └── resultados.csv 
+# 🌳 Trabalho de Árvores Especializadas — AEDS II
 
-🗃️ Conjunto de Dados
+Implementação e análise experimental de estruturas de dados em árvore desenvolvida para a disciplina de **Algoritmos e Estruturas de Dados II (AEDS II)** do **CEFET-MG — Campus Divinópolis**.
+
+O projeto implementa e compara diferentes estruturas especializadas, considerando operações de inserção, busca e remoção, além de consultas espaciais na KD-Tree.
+
+## 📚 Estruturas Implementadas
+
+- **Trie** — armazenamento e busca de strings por prefixo.
+- **Patricia** — árvore compactada para armazenamento de strings.
+- **Splay** — árvore binária de busca autoajustável.
+- **Treap** — árvore que combina propriedades de BST e heap.
+- **KD-Tree** — estrutura para organização e busca de pontos multidimensionais.
+
+## 📁 Estrutura do Projeto
+
+```text
+Trabalho_-rvoresa_AEDSII/
+├── .gitignore
+├── Makefile
+├── README.md
+├── gerar_dados.py
+├── gerar_graficos.py
+├── data/
+│   ├── ints_aleatorio.csv
+│   ├── ints_decrescente.csv
+│   ├── ints_ordenado.csv
+│   ├── pontos_uniforme.csv
+│   ├── strings_aleatorio.csv
+│   ├── strings_decrescente.csv
+│   └── strings_ordenado.csv
+├── include/
+│   ├── KD_Tree.hpp
+│   ├── Leitura_Arquivo.hpp
+│   ├── Patricia.hpp
+│   ├── Splay.hpp
+│   ├── Testes.hpp
+│   ├── Treap.hpp
+│   └── Trie.hpp
+├── src/
+│   ├── KD_Tree.cpp
+│   ├── Leitura_Arquivo.cpp
+│   ├── Main.cpp
+│   ├── Patricia.cpp
+│   ├── Splay.cpp
+│   ├── Testes.cpp
+│   ├── Treap.cpp
+│   └── Trie.cpp
+└── output/
+    ├── resultados.csv
+    └── graficos/
+        ├── 01_trie_patricia_busca_aleatorio.png
+        ├── 02_trie_patricia_busca_ordenado.png
+        ├── 03_trie_patricia_busca_decrescente.png
+        ├── 04_splay_treap_insercao_aleatorio.png
+        ├── 05_splay_treap_insercao_ordenado.png
+        ├── 06_splay_treap_insercao_decrescente.png
+        └── 07_kdtree_operacoes.png
+```
+
+# 🗃️ Conjunto de Dados
 
 Os experimentos práticos avaliaram tamanhos de entrada:
 
-n ∈ {100, 1.000, 10.000, 50.000, 100.000}
+$$n \in \{100, 1.000, 10.000, 50.000, 100.000\}$$
 
 sob três distribuições de chaves:
 
-Strings (Trie e Patricia): aleatorio, ordenado e decrescente.
-Inteiros (Splay e Treap): aleatorio, ordenado e decrescente.
-Pontos Tridimensionais (KD-Tree): distribuição uniforme em espaço 3D, com k = 3.
+* **Strings (Trie e Patricia):** aleatório, ordenado e decrescente.
+* **Inteiros (Splay e Treap):** aleatório, ordenado e decrescente.
+* **Pontos tridimensionais (KD-Tree):** distribuição uniforme em espaço 3D, com $k = 3$.
 
-Os dados utilizados nos experimentos estão disponíveis na pasta data/. O script gerar_dados.py permite reproduzir a geração dos conjuntos de dados.
+Os dados utilizados nos experimentos estão disponíveis na pasta `data/`. O script `gerar_dados.py` permite reproduzir a geração dos conjuntos de dados utilizando uma *seed* fixa igual a `42`.
 
-⚙️ Compilação e Execução
-✅ Pré-requisitos
-Compilador C++ com suporte ao padrão C++17 (g++ 13+ ou clang++).
-Utilitário make.
-Ambiente Linux ou WSL.
-🛠️ Comandos
+---
+
+# ⚙️ Compilação e Execução
+
+### ✅ Pré-requisitos
+
+* Compilador C++ com suporte ao padrão C++11 (`g++ 13+` ou `clang++`)
+* Utilitário `make`
+* Ambiente Linux ou WSL
+
+---
+
+### 🛠️ Comandos
 
 Clone o repositório:
 
-git clone https://github.com/JulyaGPires/Trabalho_-rvoesa_AEDSII.git
-cd Trabalho_-rvoesa_AEDSII
+```bash
+git clone https://github.com/JulyaGPires/Trabalho_-rvoresa_AEDSII.git
+cd Trabalho_-rvoresa_AEDSII
+```
 
 Compile o projeto:
 
+```bash
 make
+```
 
 Execute a suíte de testes:
 
+```bash
 make run
+```
 
 Os resultados são salvos em:
 
+```
 output/resultados.csv
+```
 
 Para remover os arquivos gerados pela compilação:
 
+```bash
 make clean
-📊 Resultados Experimentais (n = 100.000)
+```
+## 📊 Resultados Experimentais (n = 100.000)
 
 Tempos médios de execução obtidos com entrada aleatória, em milissegundos:
 
-Estrutura	Inserção (ms)	Busca (ms)	Remoção (ms)	NNS (ms)	Range Search (ms)
-Trie	428,80	81,03	257,21	—	—
-Patricia	96,69	58,22	102,44	—	—
-Splay	122,62	83,51	79,63	—	—
-Treap	57,97	52,41	48,56	—	—
-KD-Tree	119,10	184,11	241,38	189,13	51,87
+| Estrutura | Inserção (ms) | Busca (ms) | Remoção (ms) | NNS (ms) | Range Search (ms) |
+|-----------|---------------:|-----------:|-------------:|---------:|-------------------:|
+| Trie      |537,11          |47,02       |285,31        | —        | —                   |
+| Patricia  |56,04           |34,50       |142,60        | —        | —                   |
+| Splay     |103,73          |82,51       |112,08        | —        | —                   |
+| Treap     |55,02           |62,77       |75,91         | —        | —                   |
+| KD-Tree   |187,15          |221,24      |271,85        | 261,25   | 58,52               |
 
 Os tempos podem variar conforme o ambiente de execução.
 
-📈 Análise Experimental
+## 📈 Análise Experimental
 
 Os experimentos foram realizados considerando diferentes tamanhos de entrada e distribuições, permitindo observar o comportamento das estruturas em cenários aleatórios, ordenados e decrescentes.
 
 Para as estruturas de strings, foram comparadas principalmente Trie e Patricia. Para as estruturas baseadas em chaves inteiras, foram analisadas Splay e Treap. A KD-Tree foi avaliada separadamente devido à sua finalidade de organização e consulta de dados multidimensionais.
 
-Os resultados completos dos experimentos são armazenados em:
+Os resultados completos dos experimentos são armazenados em `output/resultados.csv`.
+Os gráficos gerados a partir dos experimentos estão disponíveis na pasta `output/graficos/`.
 
-output/resultados.csv
-🛠️ Ambiente de Desenvolvimento
-Linguagem: C++17
-Sistema operacional: Ubuntu 24.04 (WSL2)
-Compilador: g++ 13.3.0
-Hardware: Intel Core i5-7200U
-Memória RAM: 8 GB
-👩🏽‍💻 Autora
+## 🛠️ Ambiente de Desenvolvimento
 
-Julya Gonçalves Pires
+O projeto foi desenvolvido e testado no seguinte ambiente:
 
-Engenharia de Computação — CEFET-MG Campus Divinópolis
+| Item | Valor |
+|---|---|
+| **Sistema Operacional** | Windows 10 Home Single Language 22H2 |
+| **WSL** | 2.6.3.0 |
+| **Distribuição Linux** | Ubuntu 24.04.1 LTS (Noble) |
+| **Compilador** | g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0 |
+| **Padrão C++** | C++11 |
+| **Build system** | Makefile |
 
-GitHub: @JulyaGPires
-E-mail: julyapires500@gmail.com
+## 📚 Referências
+
+- MORRISON, D. R. **PATRICIA — Practical Algorithm To Retrieve Information Coded in Alphanumeric**. *Journal of the ACM*, v. 15, n. 4, p. 514–534, 1968.
+- SLEATOR, D. D.; TARJAN, R. E. **Self-Adjusting Binary Search Trees**. *Journal of the ACM*, v. 32, n. 3, p. 652–686, 1985.
+- BENTLEY, J. L. **Multidimensional binary search trees used for associative searching**. *Communications of the ACM*, v. 18, n. 9, p. 509–517, 1975.
+
+## 👩🏽‍💻 Autora
+
+**Julya Gonçalves Pires**
+- Email: julyapires500@gmail.com
+
