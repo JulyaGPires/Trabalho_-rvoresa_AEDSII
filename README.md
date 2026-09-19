@@ -74,7 +74,7 @@ sob três distribuições de chaves:
 * **Inteiros (Splay e Treap):** aleatório, ordenado e decrescente.
 * **Pontos tridimensionais (KD-Tree):** distribuição uniforme em espaço 3D, com $k = 3$.
 
-Os dados utilizados nos experimentos estão disponíveis na pasta `data/`. O script `gerar_dados.py` permite reproduzir a geração dos conjuntos de dados utilizando uma *seed* fixa igual a `42`.
+Os dados utilizados nos experimentos estão disponíveis na pasta `data/`. O script `gerar_dados.py` permite reproduzir a geração dos conjuntos de dados utilizando uma seed fixa igual a `42`.
 
 ---
 
@@ -122,7 +122,7 @@ make clean
 ```
 ## 📊 Resultados Experimentais (n = 100.000)
 
-Tempos médios de execução obtidos com entrada aleatória, em milissegundos:
+Tempos de execução obtidos com entrada aleatória, em milissegundos:
 
 | Estrutura | Inserção (ms) | Busca (ms) | Remoção (ms) | NNS (ms) | Range Search (ms) |
 |-----------|---------------:|-----------:|-------------:|---------:|-------------------:|
